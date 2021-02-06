@@ -4,6 +4,10 @@ Saved as location_group_order*/
 SELECT productlocation,  productname FROM product
 GROUP BY productlocation, productname;
 
+/*list all products to use in the search function*/
+SELECT productname, productprice, categoryname FROM product
+INNER JOIN category ON category.categoryid=product.categoryid;
+
 /*The following views will all all items from a given category to be agregated.
 list_all_food*/
 SELECT productname, productprice, categoryname FROM product
