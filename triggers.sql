@@ -35,3 +35,21 @@ CREATE TRIGGER delete_products
     ON warehouse
     FOR EACH ROW 
     EXECUTE PROCEDURE remove_store_prods();
+
+
+/*trigger to delete category from products when the category is deleted*/
+CREATE OR REPLACE FUNCTION remove_category()
+  RETURNS trigger AS
+$$
+BEGIN
+        DELETE FROM category
+        WHERE category.categoryid=OLD.categoryid;
+RETURN NEW;
+END;
+$$
+LANGUAGE 'plpgsql';
+CREATE TRIGGER delete_category
+    AFTER DELETE
+    ON product
+    FOR EACH ROW
+    EXECUTE PROCEDURE remove_category();
