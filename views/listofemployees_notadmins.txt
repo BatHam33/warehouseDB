@@ -1,0 +1,5 @@
+CREATE VIEW list_of_employees_not_admins AS
+SELECT FirstName, LastName, Title
+FROM Employee
+WHERE EmployeeID NOT IN
+(SELECT EmployeeID FROM Admin); 
