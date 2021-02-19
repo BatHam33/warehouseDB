@@ -57,7 +57,7 @@ DECLARE
   _role NAME;
   result jwt_token;
 BEGIN
-  SELECT admin.adminid FROM admin WHERE admin.username=login.username AND password=login.password INTO _role;
+  SELECT admin.adminid FROM admin WHERE admin.username=login.username AND admin.password=login.password INTO _role;
   IF _role IS NULL THEN
     RAISE invalid_password USING message = 'invalid user or password';
   END IF;
@@ -80,6 +80,7 @@ GRANT EXECUTE ON FUNCTION
   login(text,text)
   TO anonymous;
 
+/*Only Admins can create new ADMINS*/
 GRANT EXECUTE ON FUNCTION
   signup(text, text, text)
   TO admins
@@ -90,7 +91,7 @@ CREATE OR REPLACE FUNCTION
 signup_customer(email text, password text) RETURNS VOID
 AS $$
   INSERT INTO customer (email, password) VALUES
-    (signup.email, signup.password);
+    (signup_customer.email, signup_customer.password);
 $$ LANGUAGE sql SECURITY DEFINER;
 
 
@@ -102,7 +103,7 @@ DECLARE
   _role NAME;
   result jwt_token;
 BEGIN
-  SELECT customer.customerid FROM customer WHERE customer.username=login.username AND password=login.password INTO _role;
+  SELECT customer.customerid FROM customer WHERE customer.username=login_customer.username AND customer.password=login_customer.password INTO _role;
   IF _role IS NULL THEN
     RAISE invalid_password USING message = 'invalid user or password';
   END IF;
@@ -111,7 +112,7 @@ BEGIN
       row_to_json(r), current_setting('app.settings.jwt_secret')
     ) AS token
     from (
-      SELECT 'anonymous' AS role, login.username AS username, _role AS customerid,
+      SELECT 'anonymous' AS role, login_customer.username AS username, _role AS customerid,
          extract(epoch from now())::integer + 3600*60*60 as exp
     ) r
     INTO result;
