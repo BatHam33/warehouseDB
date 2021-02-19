@@ -42,10 +42,10 @@ $$;
 --
 
 CREATE OR REPLACE FUNCTION
-signup(employeeid int, username text, password text) RETURNS VOID
+signup(username text, password text, employeeid text) RETURNS VOID
 AS $$
-  INSERT INTO admin (employeeid, username, password) VALUES
-    (signup.employeeid, signup.username, signup.password);
+  INSERT INTO admin (username, password, employeeid) VALUES
+    (signup.username, signup.password, signup.employeeid::int);
 $$ LANGUAGE sql SECURITY DEFINER;
 
 
