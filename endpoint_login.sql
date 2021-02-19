@@ -81,7 +81,7 @@ GRANT EXECUTE ON FUNCTION
   TO anonymous;
 
 GRANT EXECUTE ON FUNCTION
-  signup(int, text, text)
+  signup(text, text, text)
   TO admins
 
 /*login endpoint for customers*/
@@ -122,5 +122,5 @@ $$
 
 GRANT EXECUTE ON FUNCTION
   login_customer(text,text),
-  signup_customer(int, text, text)
+  signup_customer(text, text)
   TO anonymous;
