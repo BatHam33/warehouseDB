@@ -77,9 +77,12 @@ $$
 
 /*Anyone can login*/
 GRANT EXECUTE ON FUNCTION
-  login(text,text),
-  signup(int, text, text)
+  login(text,text)
   TO anonymous;
+
+GRANT EXECUTE ON FUNCTION
+  signup(int, text, text)
+  TO admins
 
 /*login endpoint for customers*/
 
