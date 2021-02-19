@@ -103,7 +103,7 @@ DECLARE
   _role NAME;
   result jwt_token;
 BEGIN
-  SELECT customer.customerid FROM customer WHERE customer.username=login_customer.username AND customer.password=login_customer.password INTO _role;
+  SELECT customer.customerid FROM customer WHERE customer.email=login_customer.email AND customer.password=login_customer.password INTO _role;
   IF _role IS NULL THEN
     RAISE invalid_password USING message = 'invalid user or password';
   END IF;
@@ -112,7 +112,7 @@ BEGIN
       row_to_json(r), current_setting('app.settings.jwt_secret')
     ) AS token
     from (
-      SELECT 'anonymous' AS role, login_customer.username AS username, _role AS customerid,
+      SELECT 'anonymous' AS role, login_customer.email AS email, _role AS customerid,
          extract(epoch from now())::integer + 3600*60*60 as exp
     ) r
     INTO result;
