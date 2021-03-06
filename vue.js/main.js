@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
-
+import Register from "./pages/Register";
 Vue.config.productionTip = false;
 
 import "bootstrap/dist/css/bootstrap.css";
@@ -44,7 +44,8 @@ const router = new VueRouter({
       children: [
         { path: "add", component: AdminArticleAdd },
         { path: "edit/:id", component: AdminArticleEdit },
-        { path: "", component: AdminArticleList },
+        { path: "", component: AdminArticleList },	
+        { path: "adminlist", component: AdminUserList },
       ],
     },
   ],

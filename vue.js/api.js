@@ -8,10 +8,15 @@ class Api {
     return axios.get(API_URL + "/products", {});
   }
 
+  getadmins() {
+    return axios.get(API_URL + "/list_of_admins", {
+        headers: authHeader(),
+      } );
+  }
+
   getProductOfType(category) {
     return axios.get(API_URL + "/get_all_"+category);
   }
-
 
   login_admin(username, password) {
     return axios.post(API_URL + "/rpc/login", { username, password });
@@ -24,6 +29,7 @@ class Api {
   signup_customer(email, password, name) {
     return axios.post(API_URL + "/rpc/signup", { email, password, name });
   }
+
 }
 
 export default new Api();
