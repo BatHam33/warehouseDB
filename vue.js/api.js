@@ -1,5 +1,6 @@
 import axios from "axios";
-import { authHeader, getJwtToken, getUserIdFromToken } from "./auth";
+import { authHeader } from "./auth";
+//getJwtToken, getUserIdFromToken 
 
 const API_URL = "http://192.168.50.70:8000";
 
@@ -22,7 +23,7 @@ class Api {
     return axios.post(API_URL + "/rpc/login", { username, password });
   }
 
-  login_customer(username, password) {
+  login_customer(email, password) {
     return axios.post(API_URL + "/rpc/login_customer", {email, password})
   }
 
