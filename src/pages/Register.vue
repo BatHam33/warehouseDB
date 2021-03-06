@@ -44,6 +44,7 @@
               <span>Sign Up</span>
             </button>
           </div>
+          <span class="ng-scope">Already registered?</span>
         </div>
       </form>
 

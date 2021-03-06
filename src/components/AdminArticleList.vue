@@ -1,36 +1,24 @@
 <template>
   <div>
     <div v-if="loading">Loading articles....</div>
-    <router-link to="admin/add" tag="b-button" class="float-right"
-      >Add article</router-link
-    >
+    
     <br /><br />
     <b-table-simple hover small caption-top responsive>
       <b-thead>
         <b-tr>
-          <b-th>ID</b-th>
-          <b-th>Title</b-th>
-          <b-th>Published</b-th>
-          <b-th>Actions</b-th>
+          <b-th>Name</b-th>
+          <b-th>Price</b-th>
+          <b-th>Location</b-th>
         </b-tr>
       </b-thead>
       <b-tbody>
         <b-tr v-for="product in products" :key="product.productid">
           <b-td>{{ product.productname }}</b-td>
-          <b-td>{{ product.title }}</b-td>
-          <b-td>{{ product.ispublished }}</b-td>
+          <b-td>{{ product.productprice }}</b-td>
+          <b-td>{{ product.productlocation }}</b-td>
           <b-td>
             <b-button-group>
-              <b-button
-                variant="outline-primary"
-                :to="`/admin/edit/${product.productid}`"
-                >Edit</b-button
-              >
-              <b-button
-                variant="outline-info"
-                @click="() => publishArticle(product.productid)"
-                >Publish</b-button
-              >
+              
               <b-button
                 variant="outline-danger"
                 @click="() => deleteArticle(product.productid)"
