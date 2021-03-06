@@ -8,6 +8,7 @@ import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
 import Register from "./pages/Register";
+import AdminUserList from "./components/AdminUserList";
 Vue.config.productionTip = false;
 
 import "bootstrap/dist/css/bootstrap.css";

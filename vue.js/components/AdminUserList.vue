@@ -1,24 +1,26 @@
 <template>
   <div>
-    <div v-if="loading">Loading articles....</div>
+    <div v-if="loading">Loading employees....</div>
     <router-link to="admin/add" tag="b-button" class="float-right"
-      >Add article</router-link
+      >Add employee</router-link
     >
     <br /><br />
     <b-table-simple hover small caption-top responsive>
       <b-thead>
         <b-tr>
-          <b-th>UserID</b-th>
-          <b-th>Title</b-th>
-          <b-th>Published</b-th>
+          <b-th>employeeid</b-th>
+          <b-th>LastName</b-th>
+          <b-th>FirstName</b-th>
+          <b-th>position</b-th>
           <b-th>Actions</b-th>
         </b-tr>
       </b-thead>
       <b-tbody>
         <b-tr v-for="admin in admins" :key="admin.adminid">
-          <b-td>{{ admin.adminname }}</b-td>
+          <b-td>{{ admin.employeeid }}</b-td>
+          <b-td>{{ admin.lastname }}</b-td>
+          <b-td>{{ admin.firstname }}</b-td>
           <b-td>{{ admin.title }}</b-td>
-          <b-td>{{ admin.ispublished }}</b-td>
           <b-td>
             <b-button-group>
               <b-button
