@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import Logout from "./pages/Logout";
 import Register from "./pages/Register";
 import AdminUserList from "./components/AdminUserList";
+import AdminList from "./components/AdminList";
 Vue.config.productionTip = false;
 
 import "bootstrap/dist/css/bootstrap.css";
@@ -47,6 +48,7 @@ const router = new VueRouter({
         { path: "edit/:id", component: AdminArticleEdit },
         { path: "", component: AdminArticleList },	
         { path: "adminlist", component: AdminUserList },
+        { path: "listofadmins", component: AdminList },
       ],
     },
   ],
