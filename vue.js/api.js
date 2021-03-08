@@ -15,6 +15,12 @@ class Api {
       } );
   }
 
+  deleteAdmin(adminID){
+    return axios.get(API_URL + "delete_admin" + adminID, {
+    headers: authHeader(),
+    } );
+  }
+
   getProductOfType(category) {
     return axios.get(API_URL + "/get_all_"+category);
   }
