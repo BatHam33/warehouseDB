@@ -1,16 +1,17 @@
 <template>
   <div>
-    <div v-if="loading">Loading admins....</div>
+    <div v-if="loading">Loading employees....</div>
     <router-link to="admin/addadmin" tag="b-button" class="float-right"
-      >Add admins</router-link
+      >Add employees</router-link
     >
     <br /><br />
     <b-table-simple hover small caption-top responsive>
       <b-thead>
         <b-tr>
-          <b-th>adminid</b-th>
-          <b-th>username</b-th>
-          <b-th>employeeid</b-th>
+          <b-th>Employee ID</b-th>
+          <b-th>Last Name</b-th>
+          <b-th>First Name</b-th>
+          <b-th>Title</b-th>
           <b-th>Actions</b-th>
         </b-tr>
       </b-thead>
@@ -24,7 +25,7 @@
             <b-button-group>
               <b-button
                 variant="outline-danger"
-                @click="() => deleteAdmin(admin.adminid)"
+                @click="() => deleteEmployee(admin.employeeid)"
                 >Delete</b-button
               >
             </b-button-group>
@@ -39,7 +40,7 @@
 import Api from "../api";
 
 export default {
-  name: "AdminList",
+  name: "EmployeeList",
   data: function () {
     return {
       loading: false,
@@ -47,23 +48,23 @@ export default {
     };
   },
   created: function () {
-    this.loadadmins();
+    this.loadEmployees();
   },
 
   methods: {
-    loadadmins() {
+    loadEmployees() {
       this.loading = true;
       this.admins = [];
-      Api.getadmins().then((res) => {                      
+      Api.getEmployees().then((res) => {                      
         this.admins = res.data;
         this.loading = false;
       });
     },
     
-    deleteAdmin(adminID) {
-      Api.deleteAdmin(adminID)
+    deleteEmployee(employeeid) {
+      Api.deleteEmployee(employeeid)
         .then(() => {
-          this.loadadmins();
+          this.loadEmployees();
         })
         .catch((err) => {
           console.log(err);

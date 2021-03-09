@@ -16,7 +16,19 @@ class Api {
   }
 
   deleteAdmin(adminID){
-    return axios.get(API_URL + "delete_admin" + adminID, {
+    return axios.delete(API_URL + "/admin?employeeid=eq." + adminID, {
+    headers: authHeader(),
+    } );
+  }
+
+  getEmployees() {
+    return axios.get(API_URL + "/list_of_employees", {
+      headers: authHeader(), 
+    });
+  }
+
+  deleteEmployees(employeeID){
+    return axios.delete(API_URL + "/employee?employeeid=eq." + employeeID, {
     headers: authHeader(),
     } );
   }

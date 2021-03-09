@@ -9,7 +9,7 @@ import Login from "./pages/Login";
 import Logout from "./pages/Logout";
 import Register from "./pages/Register";
 import AdminUserList from "./components/AdminUserList";
-import AdminList from "./components/AdminList";
+import EmployeeList from "./components/EmployeeList";
 Vue.config.productionTip = false;
 
 import "bootstrap/dist/css/bootstrap.css";
