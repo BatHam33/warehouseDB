@@ -48,7 +48,7 @@ const router = new VueRouter({
         { path: "edit/:id", component: AdminArticleEdit },
         { path: "", component: AdminArticleList },	
         { path: "adminlist", component: AdminUserList },
-        { path: "listofadmins", component: AdminList },
+        { path: "employeeList", component: EmployeeList },
       ],
     },
   ],
