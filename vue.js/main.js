@@ -4,7 +4,7 @@ import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 
 import App from "./App.vue";
 import Home from "./pages/Home";
-import Admin from "./pages/Admin";
+//import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
 import Register from "./pages/Register";
@@ -41,7 +41,7 @@ const router = new VueRouter({
     { path: "/register", component: Register },
     {
       path: "/admin",
-      component: Admin,
+      component: EmployeeList,
       beforeEnter: checkAuth,
       children: [
         { path: "add", component: AdminArticleAdd },
