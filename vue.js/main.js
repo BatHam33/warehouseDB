@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 
 import App from "./App.vue";
-import Home from "./pages/Home"; 
+import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
 import Register from "./pages/Register";
@@ -45,7 +45,7 @@ const router = new VueRouter({
       beforeEnter: checkAuth,
       children: [
         { path: "adminlist", component: AdminUserList },
-        { path: "employeeList", component: EmployeeList },
+        { path: "employeelist", component: EmployeeList },
         { path: "newadmin", component: NewAdmin},
         { path: "", component: EmployeeList },
       ],

@@ -73,7 +73,7 @@ export default {
       this.loading = true;
       Api.new_admin(this.employeeid, this.username, this.password)
         .then(() => {
-          this.$router.push("/login");
+          this.$router.push("/admin");
         })
         .catch((error) => {
           console.log(error);

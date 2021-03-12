@@ -8,6 +8,10 @@
     <router-link to="newadmin" tag="b-button" class="float-right"
       >Add employee</router-link
     >
+    <router-link to="adminlist" tag="b-button" class="float-right"
+      >View Admins Only</router-link
+    >
+    
     <br /><br />
     <b-table-simple hover small caption-top responsive>
       <b-thead>
