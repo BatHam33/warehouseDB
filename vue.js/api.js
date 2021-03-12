@@ -41,12 +41,16 @@ class Api {
     return axios.post(API_URL + "/rpc/login", { username, password });
   }
 
+  new_admin(employeeid, username, password) {
+    return axios.post(API_URL + "/rpc/signup", {username, password, employeeid});
+  }
+
   login_customer(email, password) {
     return axios.post(API_URL + "/rpc/login_customer", {email, password})
   }
 
   signup_customer(email, password, name) {
-    return axios.post(API_URL + "/rpc/signup", { email, password, name });
+    return axios.post(API_URL + "/rpc/signup_customer", { email, password, name });
   }
 
 }
