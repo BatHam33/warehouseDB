@@ -42,14 +42,14 @@ const router = new VueRouter({
     {
       path: "/admin",
       component: EmployeeList,
-      beforeEnter: checkAuth,
-      children: [
-        { path: "adminlist", component: AdminUserList },
-        { path: "employeeList", component: EmployeeList },
-        { path: "newadmin", component: NewAdmin},
-        { path: "", component: EmployeeList },
-      ],
+      beforeEnter: checkAuth
     },
+        
+    { path: "/admin/adminlist", component: AdminUserList, beforeEnter: checkAuth },
+    { path: "/admin/employeelist", component: EmployeeList, beforeEnter: checkAuth },
+    { path: "/admin/newadmin", component: NewAdmin, beforeEnter: checkAuth},
+    //{ path: "", component: EmployeeList, beforeEnter: checkAuth },
+    
   ],
 });
 

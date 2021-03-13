@@ -1,8 +1,15 @@
 <template>
   <div>
     <div v-if="loading">Loading Admininistrators....</div>
-    <router-link to="admin/add" tag="b-button" class="float-right"
+    <router-link to="/admin/newadmin" tag="b-button" class="float-right"
       >Add Admin</router-link
+    >
+    <!--Change router link to add employee page-->
+    <router-link to="/admin/newadmin" tag="b-button" class="float-right"
+      >Add employee</router-link
+    >
+        <router-link to="/admin/employeelist" tag="b-button" class="float-right"
+      >View All Employees</router-link
     >
     <br /><br />
     <b-table-simple hover small caption-top responsive>
