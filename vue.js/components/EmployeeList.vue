@@ -6,7 +6,7 @@
     >
     
     <!--Change router link to add employee page-->
-    <router-link to="/admin/newadmin" tag="b-button" class="float-right"
+    <router-link to="/newcustomer" tag="b-button" class="float-right"
       >Add employee</router-link
     >
         <router-link to="/admin/adminlist" tag="b-button" class="float-right"

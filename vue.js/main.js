@@ -10,6 +10,7 @@ import Register from "./pages/Register";
 import AdminUserList from "./components/AdminUserList";
 import EmployeeList from "./components/EmployeeList";
 import NewAdmin from "./pages/NewAdmin";
+import NewUser from "./pages/newUser";
 Vue.config.productionTip = false;
 
 import "bootstrap/dist/css/bootstrap.css";
@@ -48,7 +49,7 @@ const router = new VueRouter({
     { path: "/admin/adminlist", component: AdminUserList, beforeEnter: checkAuth },
     { path: "/admin/employeelist", component: EmployeeList, beforeEnter: checkAuth },
     { path: "/admin/newadmin", component: NewAdmin, beforeEnter: checkAuth},
-    //{ path: "", component: EmployeeList, beforeEnter: checkAuth },
+    { path: "/newcustomer", component: NewUser},
     
   ],
 });

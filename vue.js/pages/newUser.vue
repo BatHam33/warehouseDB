@@ -9,19 +9,10 @@
       <form name="form" @submit.prevent="handleRegister">
         <div>
           <div class="form-group">
-            <label for="employeeid">Employeeid (AdminID will be generated)</label>
+            <label for="email">email</label>
             <input
-              v-model="employeeid"
-              type="number"
-              class="form-control"
-              name="employeeid"
-            />
-          </div>
-          <div class="form-group">
-            <label for="username">Username</label>
-            <input
-              v-model="username"
-              type="text"
+              v-model="email"
+              type="email"
               class="form-control"
               name="username"
             />
@@ -71,9 +62,9 @@ export default {
     handleRegister() {
       this.message = "";
       this.loading = true;
-      Api.new_admin(this.employeeid, this.username, this.password)
+      Api.signup_customer(this.email, this.password)
         .then(() => {
-          this.$router.push("/admin");
+          this.$router.push("/login");
         })
         .catch((error) => {
           console.log(error);
