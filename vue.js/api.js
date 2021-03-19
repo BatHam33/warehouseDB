@@ -6,7 +6,7 @@ const API_URL = "http://192.168.50.70:8000";
 
 class Api {
   getProducts() {
-    return axios.get(API_URL + "/products", {});
+    return axios.get(API_URL + "/product", {});
   }
 
   getadmins() {
