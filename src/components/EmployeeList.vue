@@ -1,22 +1,18 @@
-l<template>
+<template>
   <div>
-		<br><div style="text-align:center; font-weight:bold; font-size:250%;">Admin List</div><br>
-    <div v-if="loading">Loading Admininistrators....</div>
-	<div v-if="loading">Loading Admininistrators....</div>
+		<br><div style="text-align:center; font-weight:bold; font-size:250%;">Employee List</div><br>
+    <div v-if="loading">Loading employees....</div>
     <router-link to="/logout" tag="b-button" class="float-right" style="margin-left:10px;">Log Out</router-link>
-    
     <!--Change router link to add employee page-->
-
     <router-link to="/newcustomer" tag="b-button" class="float-right" style="margin-left:10px;">Add Customer</router-link>
-
     <router-link to="/product" tag="b-button" class="float-right">Products</router-link>
-
+    
 
     <br /><br />
     <b-table-simple hover small caption-top responsive>
       <b-thead>
         <b-tr>
-          <b-th>Admin ID</b-th>
+          <b-th>Employee ID</b-th>
           <b-th>Last Name</b-th>
           <b-th>First Name</b-th>
           <b-th>Title</b-th>
@@ -33,16 +29,16 @@ l<template>
             <b-button-group>
               <b-button
                 variant="outline-danger"
-                @click="() => deleteAdmin(admin.employeeid)"
+                @click="() => deleteEmployee(admin.employeeid)"
                 >Delete</b-button
               >
             </b-button-group>
           </b-td>
         </b-tr>
       </b-tbody>
-    </b-table-simple>
-    <router-link to="/admin/employeelist" tag="b-button" class="float-left">List All Employees</router-link>
+    <router-link to="/admin/adminlist" tag="b-button" class="float-left">List Admins Only</router-link>
     <router-link to="/admin/newadmin" tag="b-button" class="float-left" style="margin-left:10px;">Add Admin</router-link>
+    </b-table-simple>
   </div>
 </template>
 
@@ -50,7 +46,7 @@ l<template>
 import Api from "../api";
 
 export default {
-  name: "AdminArticleList",
+  name: "EmployeeList",
   data: function () {
     return {
       loading: false,
@@ -58,23 +54,23 @@ export default {
     };
   },
   created: function () {
-    this.loadadmins();
+    this.loadEmployees();
   },
 
   methods: {
-    loadadmins() {
+    loadEmployees() {
       this.loading = true;
       this.admins = [];
-      Api.getadmins().then((res) => {                      
+      Api.getEmployees().then((res) => {                      
         this.admins = res.data;
         this.loading = false;
       });
     },
-
-    deleteAdmin(adminID) {
-      Api.deleteAdmin(adminID)
+    
+    deleteEmployee(employeeid) {
+      Api.deleteEmployee(employeeid)
         .then(() => {
-          this.loadadmins();
+          this.loadEmployees();
         })
         .catch((err) => {
           console.log(err);
@@ -83,6 +79,17 @@ export default {
   },
 };
 </script>
+
+
+
+
+
+
+
+
+
+
+
 
 
 

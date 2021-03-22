@@ -1,25 +1,17 @@
-l<template>
+<template>
   <div>
-		<br><div style="text-align:center; font-weight:bold; font-size:250%;">Admin List</div><br>
-    <div v-if="loading">Loading Admininistrators....</div>
-	<div v-if="loading">Loading Admininistrators....</div>
-    <router-link to="/logout" tag="b-button" class="float-right" style="margin-left:10px;">Log Out</router-link>
-    
-    <!--Change router link to add employee page-->
-
-    <router-link to="/newcustomer" tag="b-button" class="float-right" style="margin-left:10px;">Add Customer</router-link>
-
-    <router-link to="/product" tag="b-button" class="float-right">Products</router-link>
-
-
+    <div v-if="loading">Loading employees....</div>
+    <router-link to="admin/add" tag="b-button" class="float-right"
+      >Add employee</router-link
+    >
     <br /><br />
     <b-table-simple hover small caption-top responsive>
       <b-thead>
         <b-tr>
-          <b-th>Admin ID</b-th>
-          <b-th>Last Name</b-th>
-          <b-th>First Name</b-th>
-          <b-th>Title</b-th>
+          <b-th>employeeid</b-th>
+          <b-th>LastName</b-th>
+          <b-th>FirstName</b-th>
+          <b-th>position</b-th>
           <b-th>Actions</b-th>
         </b-tr>
       </b-thead>
@@ -32,8 +24,18 @@ l<template>
           <b-td>
             <b-button-group>
               <b-button
+                variant="outline-primary"
+                :to="`/admin/edit/${admin.adminid}`"
+                >Edit</b-button
+              >
+              <b-button
+                variant="outline-info"
+                @click="() => publishArticle(admin.adminid)"
+                >Publish</b-button
+              >
+              <b-button
                 variant="outline-danger"
-                @click="() => deleteAdmin(admin.employeeid)"
+                @click="() => deleteArticle(admin.adminid)"
                 >Delete</b-button
               >
             </b-button-group>
@@ -41,8 +43,6 @@ l<template>
         </b-tr>
       </b-tbody>
     </b-table-simple>
-    <router-link to="/admin/employeelist" tag="b-button" class="float-left">List All Employees</router-link>
-    <router-link to="/admin/newadmin" tag="b-button" class="float-left" style="margin-left:10px;">Add Admin</router-link>
   </div>
 </template>
 
@@ -70,11 +70,20 @@ export default {
         this.loading = false;
       });
     },
-
-    deleteAdmin(adminID) {
-      Api.deleteAdmin(adminID)
+    publishArticle(articleid) {
+      Api.publishArticle(articleid)
         .then(() => {
-          this.loadadmins();
+          this.loadArticles();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+
+    deleteArticle(articleid) {
+      Api.deleteArticle(articleid)
+        .then(() => {
+          this.loadArticles();
         })
         .catch((err) => {
           console.log(err);
@@ -83,9 +92,3 @@ export default {
   },
 };
 </script>
-
-
-
-
-
-
