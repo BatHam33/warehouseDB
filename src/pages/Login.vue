@@ -8,7 +8,7 @@
       />
       <form name="form" @submit.prevent="handleLogin">
         <div class="form-group">
-          <label for="email">Username</label>
+          <label for="email">Email</label>
           <input
             v-model="email"
             type="text"
@@ -62,7 +62,7 @@ export default {
     handleLogin() {
       this.loading = true;
       this.message = "";
-      Api.login(this.email, this.password)
+      Api.login_admin(this.email, this.password)
         .then((res) => {
           setJwtToken(res.data[0].token);
           if (this.$route.params.nextUrl != null) {
@@ -84,20 +84,9 @@ export default {
 </script>
 
 <style scoped>
-
-body {
-background-color: #2b2929;
-
-}
 label {
   display: block;
   margin-top: 10px;
-  
-}
-
-.col-md-12{
-
-
 }
 
 .card-container.card {
@@ -106,7 +95,7 @@ label {
 }
 
 .card {
-  background-color: #fefefe;
+  background-color: #f7f7f7;
   padding: 20px 25px 30px;
   margin: 0 auto 25px;
   margin-top: 50px;

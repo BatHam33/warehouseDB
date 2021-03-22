@@ -1,6 +1,7 @@
 <template>
   <div class="col-md-12">
     <div class="card card-container">
+		<div style="text-align:center; font-weight:bold; font-size:large;">Add Admin</div><br>
       <img
         id="profile-img"
         src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
@@ -9,25 +10,25 @@
       <form name="form" @submit.prevent="handleRegister">
         <div>
           <div class="form-group">
-            <label for="username">Name</label>
+            <label for="username">Employee ID:</label>
             <input
-              v-model="name"
+              v-model="employeeid"
+              type="number"
+              class="form-control"
+              name="employeeid"
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Username:</label>
+            <input
+              v-model="username"
               type="text"
               class="form-control"
-              name="name"
+              name="username"
             />
           </div>
           <div class="form-group">
-            <label for="email">Email</label>
-            <input
-              v-model="email"
-              type="email"
-              class="form-control"
-              name="email"
-            />
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
+            <label for="password">Password:</label>
             <input
               v-model="password"
               type="password"
@@ -60,8 +61,8 @@ export default {
   name: "Register",
   data() {
     return {
-      name: "",
-      email: "",
+      employeeid: "",
+      username: "",
       password: "",
       loading: false,
       message: "",
@@ -71,10 +72,9 @@ export default {
     handleRegister() {
       this.message = "";
       this.loading = true;
-
-      Api.signup(this.email, this.password, this.name)
+      Api.new_admin(this.employeeid, this.username, this.password)
         .then(() => {
-          this.$router.push("/login");
+          this.$router.push("/admin/adminlist");
         })
         .catch((error) => {
           console.log(error);
@@ -93,12 +93,10 @@ label {
   display: block;
   margin-top: 10px;
 }
-
 .card-container.card {
   max-width: 350px !important;
   padding: 40px 40px;
 }
-
 .card {
   background-color: #f7f7f7;
   padding: 20px 25px 30px;
@@ -111,7 +109,6 @@ label {
   -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 }
-
 .profile-img-card {
   width: 96px;
   height: 96px;

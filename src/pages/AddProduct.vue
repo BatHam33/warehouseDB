@@ -1,47 +1,52 @@
 <template>
   <div class="col-md-12">
     <div class="card card-container">
-      <img
-        id="profile-img"
-        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-        class="profile-img-card"
-      />
       <form name="form" @submit.prevent="handleRegister">
         <div>
+		<div style="text-align:center; font-weight:bold; font-size:large;">Add Product to Inventory</div><br>
           <div class="form-group">
-            <label for="username">Name</label>
+            <label for="productName">Product Name</label>
             <input
-              v-model="name"
+              v-model="productName"
               type="text"
               class="form-control"
-              name="name"
+              name="productname"
             />
           </div>
           <div class="form-group">
-            <label for="email">Email</label>
+            <label for="productPrice">Price</label>
             <input
-              v-model="email"
-              type="email"
+              v-model="productPrice"
+              type="text"
               class="form-control"
-              name="email"
+              name="productprice"
             />
-          </div>
           <div class="form-group">
-            <label for="password">Password</label>
+            <label for="productLocation">Location in Warehouse</label>
             <input
-              v-model="password"
-              type="password"
+              v-model="productLocation"
+              type="text"
               class="form-control"
-              name="password"
+              name="productlocation"
             />
+          <div class="form-group">
+            <label for="productCategory">Category Id</label>
+            <input
+              v-model="productCategory"
+              type="text"
+              class="form-control"
+              name="categoryid"
+            />
+	</div>
           </div>
+	</div>
           <div class="form-group">
             <button class="btn btn-primary btn-block" :disabled="loading">
               <span
                 v-show="loading"
                 class="spinner-border spinner-border-sm"
               ></span>
-              <span>Sign Up</span>
+              <span>Add Product</span>
             </button>
           </div>
         </div>
@@ -57,12 +62,14 @@
 <script>
 import Api from "../api";
 export default {
-  name: "Register",
+  name: "AddProduct",
   data() {
     return {
-      name: "",
-      email: "",
-      password: "",
+      employeeid: "",
+      productPrice: "",
+      productName: "",
+      productLocation: "",
+      productCategory: "",
       loading: false,
       message: "",
     };
@@ -71,10 +78,9 @@ export default {
     handleRegister() {
       this.message = "";
       this.loading = true;
-
-      Api.signup(this.email, this.password, this.name)
+      Api.add_product(this.productPrice, this.productName, this.productLocation, this.productCategory)
         .then(() => {
-          this.$router.push("/login");
+          this.$router.push("/product");
         })
         .catch((error) => {
           console.log(error);
@@ -93,12 +99,10 @@ label {
   display: block;
   margin-top: 10px;
 }
-
 .card-container.card {
   max-width: 350px !important;
   padding: 40px 40px;
 }
-
 .card {
   background-color: #f7f7f7;
   padding: 20px 25px 30px;
@@ -111,7 +115,6 @@ label {
   -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 }
-
 .profile-img-card {
   width: 96px;
   height: 96px;
