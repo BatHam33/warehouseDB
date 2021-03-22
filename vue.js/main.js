@@ -50,6 +50,7 @@ const router = new VueRouter({
     { path: "/admin/employeelist", component: EmployeeList, beforeEnter: checkAuth },
     { path: "/admin/newadmin", component: NewAdmin, beforeEnter: checkAuth},
     { path: "/newcustomer", component: NewUser},
+    { path: "/admin/newemployee", component: NewEmployee},
     
   ],
 });

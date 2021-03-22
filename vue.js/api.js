@@ -53,6 +53,13 @@ class Api {
     return axios.post(API_URL + "/rpc/signup_customer", { email, password });
   }
 
+  new_employee(firstname, lastname, ssn, title){
+    return axios.post(API_URL + "/rpc/employee", {
+      headers: authHeader(),
+      firstname, lastname, ssn, title});
+  }
+
+
 }
 
 export default new Api();
